@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赣州灵博文化传媒有限公司工资看板</title>
+<!-- 本地 ECharts 库（与页面同目录 echarts.js，离线可用） -->
+<script src="echarts.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: radial-gradient(ellipse at 20% 0%, #0e2a4d 0%, #071426 55%, #040b18 100%);
+    color: #dbe6f5;
+    overflow: hidden;
+  }
+  .dashboard {
+    width: 100%;
+    height: 100vh;
+    min-height: 900px;
+    padding: 18px 26px 22px;
+    display: flex;
+    flex-direction: column;
+  }
+  /* 顶栏 */
+  .header {
+    position: relative;
+    text-align: center;
+    padding: 10px 0 14px;
+    flex: 0 0 auto;
+  }
+  .header .title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #bfe0ff, #ffffff, #bfe0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(90,160,255,0.35);
+  }
+  .header .subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #7ea6d8;
+  }
+  .header .line-deco {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2px;
+    width: 720px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4d8dff, transparent);
+  }
+  /* KPI 统计卡 */
+  .kpis {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 12px 0 18px;
+  }
+  .kpi {
+    position: relative;
+    padding: 14px 20px 14px 66px;
+    background: linear-gradient(135deg, rgba(30,70,130,0.35), rgba(10,25,55,0.35));
+    border: 1px solid rgba(90,160,255,0.25);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: #4d8dff;
+  }
+  .kpi .k-icon {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    opacity: 0.9;
+  }
+  .kpi .k-label { font-size: 13px; color: #8fb2dc; letter-spacing: 1px; }
+  .kpi .k-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 2px;
+  }
+  .kpi .k-value span { font-size: 14px; color: #9fc1ea; font-weight: 400; margin-left: 4px; }
+  /* 图表区 */
+  .charts {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    min-height: 0;
+  }
+  .panel {
+    position: relative;
+    background: linear-gradient(160deg, rgba(24,60,120,0.22), rgba(8,20,45,0.35));
+    border: 1px solid rgba(90,160,255,0.22);
+    border-radius: 10px;
+    padding: 10px 12px 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .panel .p-title {
+    flex: 0 0 auto;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #cfe4ff;
+    padding-left: 12px;
+    border-left: 3px solid #4d8dff;
+    margin-bottom: 4px;
+  }
+  .panel .p-title small { font-size: 11px; color: #7ea6d8; font-weight: 400; margin-left: 8px; }
+  .chart-box {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  /* 底部说明 */
+  .footer {
+    flex: 0 0 auto;
+    text-align: center;
+    font-size: 11px;
+    color: #5a7ba8;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+  @media (max-width: 1200px) {
+    .header .title { font-size: 26px; }
+    .kpi .k-value { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <div class="header">
+    <div class="title">赣州灵博文化传媒有限公司工资看板</div>
+    <div class="subtitle">设计师佣金结算统计 · 数据周期 2026-09-05 至 2026-09-21</div>
+    <div class="line-deco"></div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="k-icon">💰</div>
+      <div class="k-label">累计佣金总额</div>
+      <div class="k-value">288<span>元</span></div>
+    </div>
+    <div class="kpi">
+      <div class="k-icon">📦</div>
+      <div class="k-label">订单总数</div>
+      <div class="k-value">14<span>单</span></div>
+    </div>
+    <div class="kpi">
+      <div class="k-icon">👥</div>
+      <div class="k-label">谈单人数量</div>
+      <div class="k-value">3<span>位</span></div>
+    </div>
+    <div class="kpi">
+      <div class="k-icon">✅</div>
+      <div class="k-label">已到账金额</div>
+      <div class="k-value">260<span>元</span></div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="panel">
+      <div class="p-title">图表1 · 日期与谈单人佣金分布<small>单位：元（折线图）</small></div>
+      <div class="chart-box" id="chart1"></div>
+    </div>
+    <div class="panel">
+      <div class="p-title">图表3 · 各谈单人佣金占比<small>单位：元（环形图）</small></div>
+      <div class="chart-box" id="chart3"></div>
+    </div>
+    <div class="panel">
+      <div class="p-title">图表2 · 日期与每日总佣金关系<small>单位：元（柱状图）</small></div>
+      <div class="chart-box" id="chart2"></div>
+    </div>
+    <div class="panel">
+      <div class="p-title">图表4 · 日期与工资到账情况<small>单位：元 · 按日期统计到账金额（条形图）</small></div>
+      <div class="chart-box" id="chart4"></div>
+    </div>
+  </div>
+
+  <div class="footer">数据来源：《张爽工资统计.xlsx》 · 截至 2026-09-23 提取</div>
+</div>
+
+<script>
+(function () {
+  if (typeof echarts === 'undefined') {
+    document.querySelectorAll('.chart-box').forEach(function (el) {
+      el.innerHTML = '<div style="padding:40px;text-align:center;color:#8fb2dc;">图表库加载失败，请检查网络后刷新页面。</div>';
+    });
+    return;
+  }
+
+  var dates = ['09-05','09-06','09-07','09-08','09-09','09-10','09-11','09-12','09-13','09-21'];
+
+  // ---------- 图表1：折线图 日期与谈单人佣金分布 ----------
+  var chart1 = echarts.init(document.getElementById('chart1'));
+  chart1.setOption({
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'axis', triggerOn: 'click', renderMode: 'richText', confine: true },
+    legend: { top: 0, itemWidth: 16, itemHeight: 10, textStyle: { color: '#bcd4f0', fontSize: 13 } },
+    grid: { left: 46, right: 20, top: 44, bottom: 34, containLabel: true },
+    xAxis: { type: 'category', data: dates, axisLabel: { color: '#9fc1ea', fontSize: 12, hideOverlap: true }, axisLine: { lineStyle: { color: 'rgba(90,160,255,0.4)' } } },
+    yAxis: { type: 'value', name: '佣金（元）', nameTextStyle: { color: '#8fb2dc' }, axisLabel: { color: '#9fc1ea', fontSize: 12 }, splitLine: { lineStyle: { color: 'rgba(90,160,255,0.12)' } } },
+    series: [
+      { name: '舒芙蕾', type: 'line', smooth: true, symbolSize: 8, data: [20,0,16,19,0,9,0,0,16,12],
+        itemStyle: { color: '#5B8FF9' }, lineStyle: { color: '#5B8FF9', width: 2.5 } },
+      { name: '星星', type: 'line', smooth: true, symbolSize: 8, data: [0,90,8,19,24,8,19,0,0,0],
+        itemStyle: { color: '#61DDAA' }, lineStyle: { color: '#61DDAA', width: 2.5 } },
+      { name: '云朵', type: 'line', smooth: true, symbolSize: 8, data: [0,0,0,0,0,0,0,28,0,0],
+        itemStyle: { color: '#F6BD16' }, lineStyle: { color: '#F6BD16', width: 2.5 } }
+    ]
+  });
+
+  // ---------- 图表2：柱状图 日期与每日总佣金 ----------
+  var chart2 = echarts.init(document.getElementById('chart2'));
+  chart2.setOption({
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'axis', triggerOn: 'click', renderMode: 'richText', confine: true },
+    grid: { left: 46, right: 20, top: 30, bottom: 34, containLabel: true },
+    xAxis: { type: 'category', data: dates, axisLabel: { color: '#9fc1ea', fontSize: 12, hideOverlap: true }, axisLine: { lineStyle: { color: 'rgba(90,160,255,0.4)' } } },
+    yAxis: { type: 'value', name: '总佣金（元）', nameTextStyle: { color: '#8fb2dc' }, axisLabel: { color: '#9fc1ea', fontSize: 12 }, splitLine: { lineStyle: { color: 'rgba(90,160,255,0.12)' } } },
+    series: [{
+      name: '每日总佣金', type: 'bar', barWidth: '52%',
+      data: [20,90,24,38,24,17,19,28,16,12],
+      itemStyle: {
+        borderRadius: [4,4,0,0],
+        color: {
+          type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [{ offset: 0, color: '#4d8dff' }, { offset: 1, color: '#1d4e9e' }]
+        }
+      },
+      label: { show: true, position: 'top', color: '#dbe6f5', fontSize: 12 }
+    }]
+  });
+
+  // ---------- 图表3：环形图 各谈单人佣金占比 ----------
+  var chart3 = echarts.init(document.getElementById('chart3'));
+  chart3.setOption({
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'item', triggerOn: 'click', renderMode: 'richText', confine: true },
+    legend: { bottom: 0, type: 'scroll', itemWidth: 14, itemHeight: 10, textStyle: { color: '#bcd4f0', fontSize: 13 } },
+    graphic: [{
+      type: 'text', left: 'center', top: '44%',
+      style: { text: '总佣金\n288 元', textAlign: 'center', fill: '#ffffff', fontSize: 16, fontWeight: 700, lineHeight: 22 }
+    }],
+    series: [{
+      name: '谈单人佣金占比', type: 'pie',
+      radius: ['46%', '70%'], center: ['50%', '46%'],
+      avoidLabelOverlap: true,
+      label: { formatter: '{b}\n{d}%', color: '#cfe4ff', fontSize: 13, lineHeight: 18 },
+      labelLine: { lineStyle: { color: 'rgba(90,160,255,0.5)' } },
+      data: [
+        { value: 92, name: '舒芙蕾', itemStyle: { color: '#5B8FF9' } },
+        { value: 168, name: '星星', itemStyle: { color: '#61DDAA' } },
+        { value: 28, name: '云朵', itemStyle: { color: '#F6BD16' } }
+      ]
+    }]
+  });
+
+  // ---------- 图表4：条形图 日期与工资到账情况 ----------
+  var arrData = [20,90,24,38,24,17,19,28,0,0];
+  var barData = arrData.map(function (v, i) {
+    return {
+      value: v,
+      itemStyle: {
+        color: v > 0
+          ? { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#2eb98b' }, { offset: 1, color: '#1c7a5c' }] }
+          : '#3a4a63'
+      }
+    };
+  });
+  var chart4 = echarts.init(document.getElementById('chart4'));
+  chart4.setOption({
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'axis', triggerOn: 'click', renderMode: 'richText', confine: true },
+    grid: { left: 60, right: 40, top: 20, bottom: 34, containLabel: true },
+    xAxis: { type: 'value', name: '到账金额（元）', nameTextStyle: { color: '#8fb2dc' }, axisLabel: { color: '#9fc1ea', fontSize: 12 }, splitLine: { lineStyle: { color: 'rgba(90,160,255,0.12)' } } },
+    yAxis: { type: 'category', data: dates.slice().reverse(), axisLabel: { color: '#9fc1ea', fontSize: 12 }, axisLine: { lineStyle: { color: 'rgba(90,160,255,0.4)' } } },
+    series: [{
+      name: '到账金额', type: 'bar', barWidth: 16,
+      data: barData.slice().reverse(),
+      label: { show: true, position: 'right', color: '#dbe6f5', fontSize: 12, formatter: function (p) { return p.value > 0 ? p.value : '未到账'; } }
+    }]
+  });
+
+  // 响应式
+  function resizeAll() {
+    chart1.resize();
+    chart2.resize();
+    chart3.resize();
+    chart4.resize();
+  }
+  window.addEventListener('resize', resizeAll);
+})();
+</script>
+</body>
+</html>
